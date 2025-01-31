@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Ohms Law Calculator</title>
+  </head>
+	
+  <body style="zoom:200%">
+	<h1>Ohms Law</h1>
+	
+	Ohm's law describes the relationship between Voltage(V) Current(I) and Resistance(R) within a circuit. The law can be expressed as the equation V=IR and can be used to find a missing variable. 
+	<br><br>
+	This demonstration shows Ohm's law using a simple circuit with a single power supply and resistor. In the diagram the Voltage is marked in <span style="color:blue">blue</span>, the current is marked in <span style="color:red">red</span> and the resistance is marked in <span style="color:green">green</span>.
+	<br>
+	<canvas id="myCanvas" width="320" height="155"></canvas>
+
+
+	<br> Voltage:    <input type="text" id="Voltage" value="">
+	<br> Current:    <input type="text" id="Current" value="">
+	<br> Resistance: <input type="text" id="Resistance" value="">
+
+	<br> <button onclick="calculate()">Calculate</button>
+	<script>
+		// draw circuit
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		ctx.moveTo(20, 45);
+		ctx.lineTo(20, 20);
+		ctx.lineTo(220, 20);
+		ctx.lineTo(220, 45);
+		ctx.lineTo(210, 50);
+		ctx.lineTo(230, 55);
+		ctx.lineTo(210, 60);
+		ctx.lineTo(230, 65);
+		ctx.lineTo(210, 70);
+		ctx.lineTo(230, 75);
+		ctx.lineTo(210, 80);
+		ctx.lineTo(230, 85);
+		ctx.lineTo(210, 90);
+		ctx.lineTo(220, 95);
+		ctx.lineTo(220, 120);
+		ctx.lineTo(20, 120);
+		ctx.lineTo(20, 95);
+		ctx.moveTo(10, 55);
+		ctx.lineTo(30, 55);
+		ctx.moveTo(15, 65);
+		ctx.lineTo(25, 65);
+		ctx.moveTo(10, 75);
+		ctx.lineTo(30, 75);
+		ctx.moveTo(15, 85);
+		ctx.lineTo(25, 85);
+		ctx.stroke();
+
+		let i = 0
+		let v = 0
+		let r = 0
+		drawText()		
+
+		// button code	
+		function calculate() {
+			i = document.getElementById("Current").value;
+			v = document.getElementById("Voltage").value;
+			r = document.getElementById("Resistance").value;
+
+			if(v.length == 0) {
+				v = document.getElementById("Voltage").value = (i * r) ;
+			}
+			if(i.length == 0) {
+				i = document.getElementById("Current").value = v / r;
+			}
+			if(r.length == 0) {
+				r = document.getElementById("Resistance").value = v / i;
+			}
+
+			drawText()
+		}
+		
+		function drawText() {
+			ctx.fillStyle = "white";
+			ctx.fillRect(35, 60, 160, 20)
+			ctx.fillRect(235, 60, 160, 20)			
+			ctx.fillRect(90, 125, 160, 20)
+
+			ctx.font = "30px Monospace";
+			ctx.fillStyle = "blue";
+			ctx.fillText(v, 35, 80);
+			ctx.fillStyle = "green";
+			ctx.fillText(i, 235, 80);
+			ctx.fillStyle = "red";
+			ctx.fillText(r, 90, 145);
+		}
+	
+	</script>
+
+   </body>
+</html>
